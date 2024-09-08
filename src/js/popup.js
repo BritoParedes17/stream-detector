@@ -542,7 +542,7 @@ const createList = async () => {
 				urlList = urlStorageRestore || [];
 			}
 
-			urlList = urlList.length && urlList.reverse(); // latest entries first
+			urlList = urlList.length && urlList; // latest entries first. Descending order
 
 			if (urlStorageFilter)
 				urlList =
@@ -561,8 +561,10 @@ const createList = async () => {
 			// clear list first just in case - quick and dirty
 			table.innerHTML = "";
 
+			urlList = urlList.filter((url) => !url.filename.includes('-'));
+
 			urlList.length
-				? insertList(urlList) // latest entries first
+				? insertList(urlList) // latest entries last. Descending order
 				: insertPlaceholder();
 		});
 	} else {
