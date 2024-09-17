@@ -561,7 +561,7 @@ const createList = async () => {
 			// clear list first just in case - quick and dirty
 			table.innerHTML = "";
 
-			urlList = urlList.filter((url) => !url.filename.includes('-'));
+			urlList = urlList.filter((url) => !url.filename.includes('-') && !url.filename.includes('_'));
 
 			urlList.length
 				? insertList(urlList) // latest entries last. Descending order
